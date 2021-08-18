@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
+    devtool: 'eval-source-map',
     entry: './src/app/js/main.js',
     output: {
         filename: 'bundle.js',
