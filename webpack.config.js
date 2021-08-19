@@ -8,13 +8,27 @@ module.exports = {
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
-        clean: true
+        clean: true,
+        assetModuleFilename: 'assets/images/[hash][ext][query]'
     },
     module: {
         rules: [
             {
                 test: /\.scss$/i,
                 use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+            },
+            {
+                test:/\.html$/,
+                use: [
+                  'html-loader'
+                ]
+            },
+            {
+                test:  /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'assets/images/[hash][ext][query]'
+                }
             }
         ],
     },
@@ -31,5 +45,8 @@ module.exports = {
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
         port: 3000
+    },
+    experiments: {
+        asset: true
     }
 }
